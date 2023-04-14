@@ -1,0 +1,15 @@
+Epoch [1/20], Step [50/2253], Loss: 9.3616
+Epoch [1/20], Step [100/2253], Loss: 9.3616
+Epoch [1/20], Step [150/2253], Loss: 9.3617
+Epoch [1/20], Step [200/2253], Loss: 9.3616
+Epoch [1/20], Step [250/2253], Loss: 9.3616
+Epoch [1/20], Step [300/2253], Loss: 9.3616
+Epoch [1/20], Step [350/2253], Loss: 9.3617
+Epoch [1/20], Step [400/2253], Loss: 9.3617
+Epoch [1/20], Step [450/2253], Loss: 9.3616
+Epoch [1/20], Step [500/2253], Loss: 9.3617
+Epoch [1/20], Step [550/2253], Loss: 9.1116
+Epoch [1/20], Step [600/2253], Loss: 9.3617
+Epoch [1/20], Step [650/2253], Loss: 9.3617
+Epoch [1/20], Step [700/2253], Loss: 9.3617
+Epoch [1/20], Step [750/2253], Loss: 9.3617
