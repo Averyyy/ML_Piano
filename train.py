@@ -3,6 +3,8 @@ import torch.optim as optim
 import torch.utils.data as data
 import torch.nn as nn
 from models.piano_transformer import PianoTransformer
+from models.piano_cnn import PianoCNN
+
 from utils.data import PianoAudioDataset
 
 # Hyperparameters
@@ -17,7 +19,8 @@ dataloader = data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 # Model, Loss and Optimizer
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = PianoTransformer(d_model=128, nhead=8, num_layers=6, dim_feedforward=512, num_classes=128).to(device)
+# model = PianoTransformer(d_model=128, nhead=8, num_layers=6, dim_feedforward=512, num_classes=128).to(device)
+model = PianoCNN(num_classes=128).to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
@@ -39,12 +42,8 @@ with open(log_file_name, "w") as log_file:
             pitches = pitches.to(device)
             velocities = velocities.to(device)
 
-
-            pitch_pred, velocity_pred = model(spectrograms)
-            loss_pitch = criterion(pitch_pred, pitches)
-            loss_vel = criterion(velocity_pred, velocities)
-            
-            loss = loss_pitch + loss_vel
+            velocity_pred = model(spectrograms, pitches)
+            loss = criterion(velocity_pred, velocities)
             
             optimizer.zero_grad()
             loss.backward()
